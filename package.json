@@ -1,0 +1,56 @@
+{
+  "name": "template-front-vite",
+  "version": "0.0.0",
+  "scripts": {
+    "dev": "vite --open --port 3000",
+    "build": "vite build",
+    "preview": "vite preview",
+    "lint": "eslint \"src/**/*.+(js|jsx)\" --fix --max-warnings=0",
+    "format": "prettier --write \"src/**/*.+(js|jsx|json|css|scss|md)\" && npm run lint",
+    "robot": "cp robots.txt dist/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Niemad78/template-front-vite.git"
+  },
+  "author": "Damien Mauger",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Niemad78/template-front-vite/issues"
+  },
+  "homepage": "https://github.com/Niemad78/template-front-vite#readme",
+  "dependencies": {
+    "@vitejs/plugin-react": "^1.1.4",
+    "axios": "^0.25.0",
+    "prop-types": "^15.8.1",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "react-helmet": "^6.1.0",
+    "react-icons": "^4.3.1",
+    "react-router-dom": "^6.2.1",
+    "vite": "^2.7.13"
+  },
+  "devDependencies": {
+    "eslint": "^8.7.0",
+    "eslint-config-airbnb": "^19.0.4",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-import": "^2.25.4",
+    "eslint-plugin-jsx-a11y": "^6.5.1",
+    "eslint-plugin-prettier": "^4.0.0",
+    "eslint-plugin-react": "^7.28.0",
+    "eslint-plugin-react-hooks": "^4.3.0",
+    "husky": "^7.0.4",
+    "lint-staged": "^12.3.1",
+    "prettier": "^2.5.1",
+    "sass": "^1.49.0"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "src/**/*.{js,jsx}": "npm run lint",
+    "*.+(js|jsx|json|css|scss|md)": "prettier --write"
+  }
+}
