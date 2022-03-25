@@ -1,3 +1,5 @@
+/* eslint-disable no-console */
+/* eslint-disable no-alert */
 import React, { useState } from "react";
 import "./App.scss";
 
@@ -21,7 +23,6 @@ function App() {
   };
 
   const sendMail = () => {
-    // eslint-disable-next-line no-console
     console.log("Hello World");
   };
 
