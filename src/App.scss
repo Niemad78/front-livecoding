@@ -1,0 +1,19 @@
+.global {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .formEmail {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .labelEmail {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 10px;
+  }
+}
