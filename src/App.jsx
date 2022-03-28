@@ -1,67 +1,42 @@
-/* eslint-disable no-console */
-/* eslint-disable no-alert */
+/* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { useState } from "react";
 import "./App.scss";
 
-function App() {
-  const [mail, setMail] = useState({
-    name: "",
-    objet: "",
-    message: "",
-  });
+const API_URL = process.env.REACT_APP_API_URL;
 
-  const handleText = (e, id) => {
-    if (id === 1) {
-      setMail({ ...mail, name: e.target.value });
-    }
-    if (id === 2) {
-      setMail({ ...mail, objet: e.target.value });
-    }
-    if (id === 3) {
-      setMail({ ...mail, message: e.target.value });
-    }
+function App() {
+  const [messages, setMessages] = useState("");
+  const [message, setMessage] = useState("");
+
+  const newMessage = (e) => {
+    setMessage(e.target.value);
   };
 
-  const sendMail = () => {
-    console.log("Hello World");
+  const handleSend = () => {
+    setMessages(message);
+    setMessage("");
   };
 
   return (
-    <section className="global">
-      <form className="formEmail">
-        <label className="labelEmail" htmlFor="name">
-          Nom
-          <input
-            id="name"
-            name="name"
-            type="text"
-            value={mail.name}
-            onChange={(e) => handleText(e, 1)}
-          />
-        </label>
-        <label className="labelEmail" htmlFor="objet">
-          Objet
-          <input
-            id="objet"
-            name="objet"
-            type="text"
-            value={mail.objet}
-            onChange={(e) => handleText(e, 2)}
-          />
-        </label>
-        <label className="labelEmail" htmlFor="message">
-          Message
-          <textarea
-            name="message"
-            id="message"
-            cols="30"
-            rows="10"
-            value={mail.message}
-            onChange={(e) => handleText(e, 3)}
-          />
-        </label>
-        <button type="button" onClick={sendMail}>
-          Envoyer
+    <section>
+      <div id="message-container">{messages}</div>
+      <form id="form">
+        <label htmlFor="message-input">Message</label>
+        <input
+          type="text"
+          id="message-input"
+          onChange={(e) => {
+            newMessage(e);
+          }}
+          value={message}
+        />
+        <button id="send-button" type="button" onClick={handleSend}>
+          Send
+        </button>
+        <label htmlFor="room-input">Room</label>
+        <input type="text" id="room-button" />
+        <button id="room-button" type="button">
+          Join
         </button>
       </form>
     </section>
