@@ -17,7 +17,7 @@ function App() {
       <h2>Messages</h2>
       {messages?.map((message) => (
         <div key={message.id}>
-          {message.author} : {message.text}`
+          {message.author} : {message.text}
         </div>
       ))}
       <h2>New message</h2>
@@ -34,7 +34,7 @@ function App() {
           type="text"
           name="messageContent"
           placeholder="Message"
-          value={nickname}
+          value={newMessage}
           onChange={(e) => setNewMessage(e.target.value)}
           required
         />
