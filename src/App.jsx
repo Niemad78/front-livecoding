@@ -1,23 +1,23 @@
 /* eslint-disable no-console */
+import React, { useState } from "react";
 import axios from "axios";
-import React, { useState, useEffect } from "react";
 import "./App.scss";
 
 const API_URL = process.env.REACT_APP_API_URL;
 
 function App() {
-  const [image, setImage] = useState({});
-  const [img, setImg] = useState({});
+  const [newImage, setNewImage] = useState({});
 
   const handleImage = (event) => {
-    setImage(event.target.files[0]);
+    setNewImage(event.target.files[0]);
   };
 
-  const sendFile = () => {
-    const newImage = new FormData();
-    newImage.append("file", image);
+  const sendFile = (e) => {
+    e.preventDefault();
+    const image = new FormData();
+    image.append("file", newImage);
     axios
-      .post(`${API_URL}/api/images`, newImage)
+      .post(`${API_URL}/api/images`, image)
       .then(() => {
         console.log("ok");
       })
@@ -26,38 +26,12 @@ function App() {
       });
   };
 
-  const getImages = () => {
-    axios
-      .get(`${API_URL}/api/images`)
-      .then((res) => res.data)
-      .then((data) => {
-        console.log(data);
-        setImg(data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
-
-  useEffect(() => {
-    getImages();
-  }, []);
-
   return (
     <section>
-      <form>
-        <label htmlFor="image">
-          <input
-            type="file"
-            accept="image/*"
-            onChange={(event) => handleImage(event)}
-          />
-        </label>
+      <form onSubmit={sendFile}>
+        <input type="file" accept="image/*" onChange={(e) => handleImage(e)} />
+        <input type="submit" value="Envoyer" />
       </form>
-      <button type="button" onClick={sendFile}>
-        Envoyer
-      </button>
-      <img src={`${API_URL}/images/${img.imageName}`} alt="test" />
     </section>
   );
 }
